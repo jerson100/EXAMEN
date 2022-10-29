@@ -38,14 +38,6 @@ public class CDPeajeWriter implements ItemWriter<CePeajeDTOSalida> {
 
 	     } 
 	     
-	     /*String fileName = JOptionPane.showInputDialog("Ingrese el nombre del archivo en el que se guardará,"
-	     		+ "\nSi no ingresa nada se generará con la fecha");
-	     
-	     if(fileName.isEmpty()) {
-	    	 fileName = "" + new Date().getTime();
-	     }*/
-	     
-	     //writeFileInSystem(poPeajeSalida, new Date().getTime()+".txt");
 	     cargarData(poPeajeSalida);
 
 	  }
@@ -104,7 +96,7 @@ public class CDPeajeWriter implements ItemWriter<CePeajeDTOSalida> {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("src/main/resources/fuente/output/matriculados.xml"));
+			StreamResult result = new StreamResult(new File("src/main/resources/fuente/output/peajes.xml"));
 			transformer.transform(source, result);
 			LOG.info("[EVL] Se ha cargado los datos.");
 		}

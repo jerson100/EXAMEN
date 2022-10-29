@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.core.io.Resource;
 
 @Configuration
-public class HsQldbConfiguration {
+public class PostgresqlConfiguration {
 
 	@Value("classpath:/org/springframework/batch/core/schema-postgresql.sql")
 	private Resource dataScript;
