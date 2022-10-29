@@ -13,12 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import pe.unjfsc.daw.ExamenG4.entity.CELostPetDTOEntrada;
-import pe.unjfsc.daw.ExamenG4.entity.CELostPetDTOSalida;
 import pe.unjfsc.daw.ExamenG4.entity.CePeajeDTOEntrada;
 import pe.unjfsc.daw.ExamenG4.entity.CePeajeDTOSalida;
 import pe.unjfsc.daw.ExamenG4.listener.JobLoteMovimientosListener;
-import pe.unjfsc.daw.ExamenG4.mapper.CLLostPetMapper;
 import pe.unjfsc.daw.ExamenG4.mapper.CLPeajeMapper;
 import pe.unjfsc.daw.ExamenG4.process.CLPeajeProcessor;
 import pe.unjfsc.daw.ExamenG4.writer.CDPeajeWriter;

@@ -11,19 +11,19 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class HsQldbConfiguration {
 
-	@Value("classpath:/org/springframework/batch/core/schema-hsqldb.sql")
+	@Value("classpath:/org/springframework/batch/core/schema-postgresql.sql")
 	private Resource dataScript;
 	
-	@Value("classpath:/org/springframework/batch/core/schema-drop-hsqldb.sql")
+	@Value("classpath:/org/springframework/batch/core/schema-drop-postgresql.sql")
 	private Resource dataScriptDrop;
 	
 	@Bean
 	public SingleConnectionDataSource getDataSource() {
 		SingleConnectionDataSource connection = new SingleConnectionDataSource();
-		connection.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
-		connection.setUrl("jdbc:hsqldb:hsql://localhost/testdb");
-		connection.setUsername("SA");
-		connection.setPassword("");
+		connection.setDriverClassName("org.postgresql.Driver");
+		connection.setUrl("jdbc:postgresql://127.0.0.1:5432/peaje");
+		connection.setUsername("postgres");
+		connection.setPassword("admin");
 		connection.setSuppressClose(true);
 		initializeDataBase().execute(connection);
 		return connection;

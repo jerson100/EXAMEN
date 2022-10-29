@@ -1,12 +1,6 @@
 package pe.unjfsc.daw.ExamenG4.writer;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,7 +12,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import org.springframework.batch.item.ItemWriter;
@@ -57,64 +50,6 @@ public class CDPeajeWriter implements ItemWriter<CePeajeDTOSalida> {
 
 	  }
 	  
-	  public void writeFileInSystem(List<? extends CePeajeDTOSalida> peajes, String file) throws IOException {
-		  LOG.info("[DAW] =====[ Empezando a generar el archivo de texto ]=====");
-		  File f;
-		  FileWriter w;
-		  BufferedWriter bw=null;
-		  PrintWriter wr=null;
-		  try {
-			  f = new File("src/main/resources/fuente/output/" + file);
-			  w = new FileWriter(f);
-			  bw=new BufferedWriter(w);
-			  wr=new PrintWriter(bw);
-			  for(CePeajeDTOSalida lostPet:peajes) {
-				  wr.append(WriteObjectToTextFile(lostPet));
-			  }
-			  LOG.info("[DAW] =====[ Se terminó de generar el archivo de texto ]=====");
-			} catch (IOException e) {
-				e.printStackTrace();
-				LOG.error("[DAW] =====[ Ocurrió un error al generar el archivo ]=====");
-			} finally {
-				if(wr!=null) {
-					wr.close();
-				}
-				if(bw!=null) {
-					bw.close();
-				}
-				LOG.info("[DAW] =====[ Cerrando conexión de escritura de los archivos ]=====");
-			}
-	  }
-	  
-	  public String WriteObjectToTextFile(CePeajeDTOSalida obj) {
-		  StringBuilder builder = new StringBuilder();
-		  builder.append(obj.getEmpresa());
-			builder.append(",");
-			builder.append('"'+obj.getRuc()+'"');
-			builder.append(",");
-			builder.append('"'+obj.getDireccion()+'"');
-			builder.append(",");
-			builder.append(obj.getUbicacion());
-			builder.append(",");
-			builder.append(obj.getFecha());
-			builder.append(",");
-			builder.append(obj.getHoraPeaje());
-			builder.append(",");
-			builder.append('"'+obj.getTipoComprobante()+'"');
-			builder.append(",");
-			builder.append(obj.getNumeroComprobante());
-			builder.append(",");
-			builder.append(obj.getCategoria());
-			builder.append(",");
-			builder.append(obj.getImporte());
-			builder.append(",");
-			builder.append(obj.getPorcentajeDescuento());
-			builder.append(",");
-			builder.append(obj.getTotalDescuento());
-			builder.append("\n");
-		  return builder.toString();
-	  }
-	  
 	  public static void cargarData(List<? extends CePeajeDTOSalida> poPeajeSalida) throws Exception {
 
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -151,7 +86,17 @@ public class CDPeajeWriter implements ItemWriter<CePeajeDTOSalida> {
 				tag.appendChild(curso);
 				Element mod = doc.createElement("CATEGORIA");
 				mod.setTextContent(o.getCategoria());
-				tag.appendChild(mod);
+				Element importe = doc.createElement("IMPORTE");
+				importe.setTextContent(""+o.getImporte());
+				tag.appendChild(importe);
+				
+				Element porcentajeDescuento = doc.createElement("PORCENTAJE_DESCUENTO");
+				porcentajeDescuento.setTextContent(""+o.getPorcentajeDescuento());
+				tag.appendChild(porcentajeDescuento);
+				
+				Element totalD = doc.createElement("TOTAL_DESCUENTO");
+				totalD.setTextContent(""+o.getTotalDescuento());
+				tag.appendChild(totalD);
 			}
 			// Se escribe el contenido del XML en un archivo
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();

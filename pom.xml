@@ -21,8 +21,9 @@
 
   <slf4j.version>1.7.5</slf4j.version> 
 
-  <bdpostgresql.version>9.3-1104-jdbc41</bdpostgresql.version> 
-
+  <!--<bdpostgresql.version>9.3-1104-jdbc41</bdpostgresql.version>-->
+  <bdpostgresql.version>42.2.18</bdpostgresql.version> 
+  
   <bdh2.version>1.4.197</bdh2.version>
    
   <hsqldb.version>2.5.1</hsqldb.version>

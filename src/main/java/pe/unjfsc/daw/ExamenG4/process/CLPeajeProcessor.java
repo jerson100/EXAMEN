@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.context.annotation.Bean;
 
-import pe.unjfsc.daw.ExamenG4.entity.CELostPetDTOEntrada;
-import pe.unjfsc.daw.ExamenG4.entity.CELostPetDTOSalida;
 import pe.unjfsc.daw.ExamenG4.entity.CePeajeDTOEntrada;
 import pe.unjfsc.daw.ExamenG4.entity.CePeajeDTOSalida;
 import pe.unjfsc.daw.ExamenG4.utils.ProcesarDescuento;
